@@ -5,8 +5,15 @@
  */
 package module1;
 
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Hashtable;
+import java.util.Set;
+import java.lang.Object;
 import java.util.StringTokenizer;
+
+import org.apache.commons.lang3.ArrayUtils; 
 
 /**
  *
@@ -14,66 +21,39 @@ import java.util.StringTokenizer;
  */
 public class Closure {
     
-    public void findclosure(String fd, String rls)
+    public String findclosure(HashMap<String, String> h, String cls)
     {
-        StringTokenizer st = new StringTokenizer(fd, "->|;");
-        StringTokenizer st1 = new StringTokenizer(fd, "->|;");
-        int n = 0;
-        
-        while(st.hasMoreTokens())
-        {
-            st.nextToken();
-            n = n+1;
-        }
-        
-        int i = 0;
-        String[] starr = new String[n];
-        while(st1.hasMoreTokens())
-        {
-            starr[i] = st1.nextToken();
-            i = i+1;
-        }
-        
-        Hashtable<String, String> h = new Hashtable<String, String>();
-        String[] stx = new String[n/2];
-        i = 0;
-        for(int l=0; l<n; l=l+2)
-        {
-            h.put(starr[l],starr[l+1]);
-            stx[i] = starr[l];
-            i++;
-        }
-                
-        Hashtable<String, String> hc = new Hashtable<String, String>();
-        
+              
         String temp;
-        String cls;
-        int[] ind = new int[n/2];
+        int n = h.size()*2;
+                
+        Set<String> hst = new HashSet<String>();
+        hst = h.keySet();
         
-        for(int k=0; k<n/2; k++)
+        String stx[] = hst.toArray(new String[hst.size()]);
+        
+        do
         {
-            cls = stx[k];
-        
+            temp = cls;
             for(int l=0; l<n/2; l++)
-                ind[l] = -1;
-            do
             {
-                temp = cls;
-                for(int l=0; l<n/2; l++)
+                if(checkkey(cls,stx[l]))
                 {
-                    if(checkkey(cls,stx[l]) && ind[l] == -1)
-                    {
-                        cls = cls.concat(h.get(stx[l]));
-                        ind[l] = 0;
-                    }
+                    Character[] clsarr = ArrayUtils.toObject(cls.toCharArray());
+                    Character[] starr = ArrayUtils.toObject((h.get(stx[l])).toCharArray());
+                    Set<Character> clsset = new HashSet<>(Arrays.asList(clsarr));
+                    Set<Character> stset = new HashSet<>(Arrays.asList(starr));
+                    clsset.addAll(stset);
+                    
+                    Character[] clstemp = new Character[clsset.size()];
+                    clsset.toArray(clstemp);
+                    cls = new String(ArrayUtils.toPrimitive(clstemp));
                 }
-            }while(!temp.equals(cls));
+            }
+        }while(!temp.equals(cls));
             
-            hc.put(stx[k],cls);
-        }
+        return cls;
         
-        
-        System.out.println(hc);
     }
     
     public boolean checkkey(String s1, String s2)
