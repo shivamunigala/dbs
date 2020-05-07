@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">ModuleOne</string>
+    <string name="tv_fds">Enter FDs</string>
+    <string name="pt_fds">F->Y</string>
+    <string name="align_center">CENTER_HORIZONTAL</string>
+    <string name="button_nextFD">Next</string>
+    <string name="button_finish">Finish</string>
+    <string name="tv_closure">Closure</string>
+    <string name="tv_close">Closure</string>
+</resources>
