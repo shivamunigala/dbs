@@ -61,15 +61,15 @@ public class Test_2NF {
                     {
                         temp = temp + pkarr[l]; 
                     }
+                }
+                
+                tempcls = clsd.findclosure(fds, temp);
                     
-                    tempcls = clsd.findclosure(fds, temp);
-                    
-                    for(Character c : npset)
+                for(Character c : npset)
+                {
+                    if(tempcls.indexOf(c)!=-1)
                     {
-                        if(tempcls.indexOf(c)!=-1)
-                        {
-                            return false;
-                        }
+                        return false;
                     }
                 }
             }
