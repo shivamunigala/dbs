@@ -59,11 +59,15 @@ public class Test_3NF {
     {
         char[] first = s1.toCharArray();
         char[] second = s2.toCharArray();
-        Arrays.sort(first);
-        Arrays.sort(second);
-        s1 = new String(first);
-        s2 = new String(second);
-        return s1.contains(s2);
+        int flag = 0;
+        for(char c : second)
+        {
+            if(s1.indexOf(c)==-1)
+            {
+                flag = 1;
+            }
+        }
+        return (flag==0 && s1.length()!=s2.length());
     }
     
 }
