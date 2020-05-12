@@ -67,7 +67,7 @@ public class Test_3NF {
                 flag = 1;
             }
         }
-        return (flag==0 && s1.length()!=s2.length());
+        return (flag==0);
     }
     
 }
