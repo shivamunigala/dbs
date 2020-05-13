@@ -66,7 +66,7 @@ public class PreNormalisationActivity extends AppCompatActivity {
 
         if(twoNf && threeNf && bcNf){
             nf.setText("BCNF");
-            decomposedRlns.add(rls);
+//            decomposedRlns.add(rls);
             hNFPlusOne = "No Need To Decompose :)";
         }
         else if(twoNf && threeNf){

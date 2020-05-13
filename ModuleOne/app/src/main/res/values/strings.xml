@@ -10,10 +10,10 @@
     <string name="pt_R">ABC</string>
     <string name="align_center">CENTER_HORIZONTAL</string>
 <!--    <string name="align_middle">CENTER_VERTICAL</string>-->
-    <string name="button_nextFD">Next</string>
+    <string name="button_nextFD">Add</string>
     <string name="button_Decompose">Decompose</string>
     <string name="button_finish">Finish</string>
-    <string name="button_clear">Clear FD\'s</string>
+    <string name="button_clear">Clear</string>
     <string name="tv_Arrow">-></string>
     <string name="tv_close">Closure</string>
 </resources>
