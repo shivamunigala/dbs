@@ -18,8 +18,9 @@ import org.apache.commons.lang3.ArrayUtils;
  */
 public class CandidateKey {
     
-    public void findCandidateKey(HashMap<String, String> fds, String rls)
+    public Set<String> findCandidateKey(HashMap<String, String> fds, String rls)
     {
+        Set<String> ret = new HashSet<String>();
         Set<String> hstl = new HashSet<String>();
         hstl = fds.keySet();
        
@@ -57,72 +58,90 @@ public class CandidateKey {
         System.out.println(L.toString());
         System.out.println(R.toString());
         System.out.println(M.toString());
-
-        Character[] clstemp = new Character[L.size()];
-        L.toArray(clstemp);
-        String cls = new String(ArrayUtils.toPrimitive(clstemp));
         
-        Closure c = new Closure();
-        if(sameChars(c.findclosure(fds, cls),rls))
-        {
-            System.out.println(cls);
-        }
-        else
-        {
-            Character[] choice = new Character[M.size()];
-            M.toArray(choice);
-            char[] choicechar  = ArrayUtils.toPrimitive(choice);
-            int[] sel = new int[M.size()];
-            
-            int index;
-            int count;
-            int flag;
-            for(int n=1; n<=M.size(); n++)
+          Closure_D c = new Closure_D();
+
+        
+            Character[] clstemp = new Character[L.size()];
+            L.toArray(clstemp);
+            String cls = new String(ArrayUtils.toPrimitive(clstemp));
+        
+          
+            if(sameChars(c.findclosure(fds, cls),rls))
             {
-                flag = 0;
-                for(int lt=1; lt<Math.pow(2,M.size()); lt++)
+                System.out.println(cls);
+                ret.add(cls);
+            }
+            else
+            {
+                int index,lt,flag;
+                int[] sel = new int[M.size()];
+                String temp;
+                Character[] Marr = new Character[M.size()];
+                M.toArray(Marr);
+                for(int i=1; i<Math.pow(2,M.size()); i++)
                 {
+                    for(int l=0; l<M.size(); l++)
+                        sel[l] = 0;
+                
                     index = 0;
-                    for(int i=0; i<M.size(); i++)
-                        sel[i] = 0;
-                    String tempcls = new String(cls);
-                    int l = lt;
-                    while(l>0)
+                    temp = new String(cls);
+                    
+                    lt = i;
+                    while(lt>0)
                     {
-                        sel[index++] = l%2;
-                        l = l/2;
+                        sel[index++] = lt%2;
+                        lt = lt/2;
                     }
                     
-                    count = 0;
-                    for(int i=0; i<M.size(); i++)
+                    for(int l=0; l<M.size(); l++)
                     {
-                        if(sel[i]==1)
-                            count++;
-                    }
-                    
-                    if(count == n)
-                    {
-                        //System.out.println(lt + " " + n);
-                        for(int i=0; i<M.size(); i++)
+                        if(sel[l]==1)
                         {
-                            if(sel[i]==1)
+                            temp = temp + Marr[l]; 
+                        }
+                            
+                    }
+                    
+                    flag = 0;
+                    if(sameChars(c.findclosure(fds, temp),rls))
+                    {
+                         
+                        for(String s : ret)
+                        {
+                            if(checksubstring(temp,s))
                             {
-                                tempcls = tempcls + choicechar[i]; 
+                                flag = 1;
                             }
                         }
-                        if(sameChars(c.findclosure(fds, tempcls),rls))
+                        
+                        if(flag == 0)
                         {
-                            System.out.println(tempcls);
-                            flag = 1;
-                        }                    
-                    }                        
-                }                
-                if(flag == 1)
-                    break;
+                            System.out.println(temp); 
+                            ret.add(temp);
+                        }
+                    }
+                    
+                }
+            }
+        
+            
+        return ret;
+    }
+    
+    public boolean checksubstring(String s1, String s2)
+    {
+        char[] first = s1.toCharArray();
+        char[] second = s2.toCharArray();
+        int flag = 0;
+        for(char c : second)
+        {
+            if(s1.indexOf(c)==-1)
+            {
+                flag = 1;
             }
         }
-        
-        
+        return (flag==0 && s1.length()!=s2.length());
     }
     
     public boolean sameChars(String firstStr, String secondStr) 

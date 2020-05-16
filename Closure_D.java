@@ -19,7 +19,7 @@ import org.apache.commons.lang3.ArrayUtils;
  *
  * @author karupakula
  */
-public class Closure {
+public class Closure_D {
     
     public String findclosure(HashMap<String, String> h, String cls)
     {
