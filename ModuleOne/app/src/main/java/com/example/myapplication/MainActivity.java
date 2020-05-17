@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
         rls = editText.getText().toString();
 
         Set<Character> enteredR= rls.chars().mapToObj(c-> (char) c).collect(Collectors.toSet());
-        if(enteredR.size()!=rls.length()||!enteredR.containsAll(rFromFds)){
+        if(enteredR.size()!=rls.length()||!enteredR.containsAll(rFromFds)||(rFromFds.isEmpty() && rls.equals(""))){
             ErrorMessageMain errorMessageMain = new ErrorMessageMain();
             errorMessageMain.show(getSupportFragmentManager(),"Error message");
         }

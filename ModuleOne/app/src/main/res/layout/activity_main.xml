@@ -64,10 +64,11 @@
         android:id="@+id/button"
         android:layout_width="85dp"
         android:layout_height="54dp"
-        android:layout_marginStart="36dp"
         android:layout_marginTop="32dp"
         android:onClick="onAdd"
         android:text="@string/button_nextFD"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/pt_Rfd"
         app:layout_constraintTop_toBottomOf="@+id/tv_fds" />
 
@@ -97,7 +98,7 @@
         android:id="@+id/pt_R"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="44dp"
+        android:layout_marginStart="56dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:gravity="center_horizontal"
@@ -114,6 +115,8 @@
         android:layout_marginTop="92dp"
         android:onClick="onClear"
         android:text="@string/button_clear"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/fdlv"
         app:layout_constraintTop_toBottomOf="@+id/pt_Lfd" />
 
